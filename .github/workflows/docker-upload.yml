@@ -23,6 +23,10 @@ jobs:
         working-directory: ./lpick-backend
         run: echo "Moved to backend directory"
 
+      - name: gradlew 파일에 권한 추가
+        working-directory: ./lpick-backend
+        run: chmod +x gradlew
+
       - name: 시크릿에서 API-KEY 가져온 후 생성
         working-directory: ./lpick-backend
         run: |
