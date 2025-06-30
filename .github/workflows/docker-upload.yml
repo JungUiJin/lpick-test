@@ -65,5 +65,5 @@ jobs:
       - name: 빌드 후 DockerHub에 업로드
         working-directory: ./lpick-backend
         run: |
-          docker build -t your-dockerhub-username/lpick-backend:latest .
-          docker push your-dockerhub-username/lpick-backend:latest
+          docker build -t junguijin/lpick-backend:latest .
+          docker push junguijin/lpick-backend:latest
