@@ -76,4 +76,20 @@ public class SecurityConfig {
         return h;
     }
 
+    // 3) CORS 빈 생성
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+
+        // 로컬 프론트엔드 주소 허용
+        configuration.addAllowedOrigin("http://localhost:3000");
+
+        configuration.addAllowedMethod("*"); // 모든 HTTP 메서드 허용
+        configuration.addAllowedHeader("*"); // 모든 헤더 허용
+        configuration.setAllowCredentials(true); // 쿠키 인증 필요하면 true
+
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
+    }
 }

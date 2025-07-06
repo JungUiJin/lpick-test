@@ -1,6 +1,7 @@
 spring:
   config:
     import:
+      - optional:file:/app/API-KEY.yml
       - optional:classpath:API-KEY.yml
   sql:
     init:
