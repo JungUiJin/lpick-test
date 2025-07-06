@@ -42,7 +42,7 @@ jobs:
         working-directory: ./lpick-backend
         run: |
           mkdir -p src/main/resources
-          echo "${{ secrets.API_KEY_VALUE }}" > src/main/resources/API-KEY.yml
+          echo "${{ secrets.API_KEY_CONTENT }}" > src/main/resources/API-KEY.yml
 
       - name: Gradle 빌드
         working-directory: ./lpick-backend
