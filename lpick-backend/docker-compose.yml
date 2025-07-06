@@ -1,15 +1,41 @@
-version: "3.8"
+version: '3.8'
 
+# EC2에 사용될 docker-compose
 services:
+  backend:
+    image: junguijin/lpick-backend:latest
+    container_name: lpick-backend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+      - redis
+    volumes:
+      - ./API-KEY.yml:/app/API-KEY.yml
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/prod_db
+      SPRING_DATASOURCE_USERNAME: produser
+      SPRING_DATASOURCE_PASSWORD: prodpass
+      SPRING_REDIS_HOST: redis
+      SPRING_REDIS_PORT: 6379
+
+  postgres:
+    image: postgres:15
+    container_name: lpick-postgres
+    restart: always
+    environment:
+      POSTGRES_DB: prod_db
+      POSTGRES_USER: produser
+      POSTGRES_PASSWORD: prodpass
+    volumes:
+      - pgdata:/var/lib/postgresql/data
 
   redis:
     image: redis:7.2-alpine
-    container_name: redis
+    container_name: lpick-redis
+    restart: always
     ports:
       - "6379:6379"
-    volumes:
-      - redis-data:/data
-    restart: always
 
 volumes:
-  redis-data:
+  pgdata:
