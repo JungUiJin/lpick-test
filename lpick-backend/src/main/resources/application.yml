@@ -57,4 +57,5 @@ springdoc:
     operationsSorter: method
     tagsSorter: alpha
     display-request-duration: true
+    oauth2-redirect-url: ${swagger.oauth2-redirect-url}
     persistAuthorization: true  # Swagger UI 페이지 새로고침해도 인증정보 유지
