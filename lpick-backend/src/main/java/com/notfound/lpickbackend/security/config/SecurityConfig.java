@@ -34,7 +34,9 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
-        http.cors(Customizer.withDefaults()).csrf(csrf -> csrf.disable());
+        http.csrf(csrf -> csrf.disable());
+        http.cors(cors -> cors
+                .configurationSource(corsConfigurationSource()));
         http.authorizeHttpRequests(config -> config
                         .requestMatchers("/api/v1/developer-token","/swagger-ui.html/**", "/swagger-ui/**", "/v3/api-docs/**").permitAll() // 개발자용 토큰 요청 허용
                         .anyRequest().authenticated() // 테스트를 위해 임시로 설정
