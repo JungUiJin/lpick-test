@@ -11,6 +11,7 @@ import org.springframework.security.access.expression.method.DefaultMethodSecuri
 import org.springframework.security.access.expression.method.MethodSecurityExpressionHandler;
 import org.springframework.security.access.hierarchicalroles.RoleHierarchy;
 import org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -33,7 +34,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
-        http.csrf(csrf -> csrf.disable());
+        http.cors(Customizer.withDefaults()).csrf(csrf -> csrf.disable());
         http.authorizeHttpRequests(config -> config
                         .requestMatchers("/api/v1/developer-token","/swagger-ui.html/**", "/swagger-ui/**", "/v3/api-docs/**").permitAll() // 개발자용 토큰 요청 허용
                         .anyRequest().authenticated() // 테스트를 위해 임시로 설정
