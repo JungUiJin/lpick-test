@@ -86,6 +86,8 @@ public class SecurityConfig {
 
         // 로컬 프론트엔드 주소 허용
         configuration.addAllowedOrigin("http://localhost:3000");
+        // 배포된 swagger 허용
+        configuration.addAllowedOrigin("http://3.34.194.165:8080");
 
         configuration.addAllowedMethod("*"); // 모든 HTTP 메서드 허용
         configuration.addAllowedHeader("*"); // 모든 헤더 허용
