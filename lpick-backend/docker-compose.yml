@@ -1,6 +1,5 @@
 version: '3.8'
 
-# EC2에 사용될 docker-compose
 services:
   backend:
     image: junguijin/lpick-backend:latest
@@ -8,8 +7,10 @@ services:
     ports:
       - "8080:8080"
     depends_on:
-      - postgres
-      - redis
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_started
     volumes:
       - ./API-KEY.yml:/app/API-KEY.yml
 
@@ -25,6 +26,11 @@ services:
       - pgdata:/var/lib/postgresql/data
     ports:
       - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   redis:
     image: redis:7.2-alpine
