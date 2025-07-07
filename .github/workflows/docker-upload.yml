@@ -72,7 +72,7 @@ jobs:
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
           source: "./lpick-backend/docker-compose.yml"
-          target: "~/lpick-server/docker-compose.yml"
+          target: "~/lpick-server"
 
       # API-KEY.yml 생성
       - name: API-KEY.yml 생성
@@ -83,7 +83,7 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             mkdir -p ~/lpick-server
-            echo "${{ secrets.API_KEY_CONTENT }}" > ~/lpick-server/API-KEY.yml
+            echo "${{ secrets.API_KEY_CONTENT }}" > ~/lpick-server/lpick-backend/API-KEY.yml
 
       # docker-compose로 서비스 실행
       - name: EC2 docker-compose 실행
@@ -93,7 +93,7 @@ jobs:
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            cd ~/lpick-server
+            cd ~/lpick-server/lpick-backend/
             docker-compose pull
             docker-compose down
             docker-compose up -d
