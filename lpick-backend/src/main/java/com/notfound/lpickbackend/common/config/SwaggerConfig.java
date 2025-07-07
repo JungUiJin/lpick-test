@@ -9,11 +9,14 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class SwaggerConfig {
+
     @Bean
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
                 .addSecurityItem(new SecurityRequirement().addList("kakao"))
+                .addSecurityItem(new SecurityRequirement().addList("cookieAuth")) // ✅ 쿠키 인증 방식 추가
                 .components(new Components()
+                        // ✅ 기존 Kakao OAuth 설정
                         .addSecuritySchemes("kakao", new SecurityScheme()
                                 .type(SecurityScheme.Type.OAUTH2)
                                 .flows(new OAuthFlows()
@@ -22,6 +25,17 @@ public class SwaggerConfig {
                                                 .tokenUrl("https://kauth.kakao.com/oauth/token")
                                                 .scopes(new Scopes()
                                                         .addString("profile_nickname", "Access to nickname")
-                                                        .addString("profile_image", "Access to profile image"))))));
+                                                        .addString("profile_image", "Access to profile image")
+                                                )
+                                        )
+                                )
+                        )
+                        // ✅ 쿠키 기반 인증 스키마 추가 (access_token 기준)
+                        .addSecuritySchemes("cookieAuth", new SecurityScheme()
+                                .type(SecurityScheme.Type.APIKEY)
+                                .in(SecurityScheme.In.COOKIE)
+                                .name("access_token") //
+                        )
+                );
     }
 }
