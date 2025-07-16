@@ -27,9 +27,8 @@ public class JwtFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
-        log.info("JWT Filter 시작.");
-
         String path = request.getRequestURI();
+        log.info("JWT Filter 시작. uri : {}", path);
 
         // oath2 코드 요청 리다이렉트는 건너 뛰기
         // 개발자 전용 토큰 요청도 건너 뛰기
