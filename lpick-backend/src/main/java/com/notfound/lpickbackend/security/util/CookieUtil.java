@@ -13,7 +13,7 @@ public class CookieUtil {
     public static void addCookie(HttpServletResponse response, String name, String value, int maxAgeInSec) {
         Cookie cookie = new Cookie(name, value);
         cookie.setHttpOnly(true);
-        cookie.setSecure(true);
+        cookie.setSecure(false); // 테스트 단계이기 때문에 false로 설정
         cookie.setPath("/");
         cookie.setMaxAge(maxAgeInSec);
         response.addCookie(cookie);
@@ -26,7 +26,7 @@ public class CookieUtil {
         cookie.setPath("/");
         cookie.setMaxAge(0); // 즉시 만료
         cookie.setHttpOnly(true);
-        cookie.setSecure(true);
+        cookie.setSecure(false);
         response.addCookie(cookie);
     }
 }
