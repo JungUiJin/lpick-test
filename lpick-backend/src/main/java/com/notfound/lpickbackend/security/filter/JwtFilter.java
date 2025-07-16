@@ -43,6 +43,10 @@ public class JwtFilter extends OncePerRequestFilter {
         // 요청 헤더에서 Cookies 추출
         Cookie[] cookies = request.getCookies();
 
+        for (Cookie cookie : cookies) {
+            log.info("{} : {}", cookie.getName(), cookie.getValue());
+        }
+
         String tokenValue = null;
 
         String token = null;
