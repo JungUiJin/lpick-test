@@ -57,6 +57,8 @@ public class CustomOAuth2SuccessHandler implements AuthenticationSuccessHandler 
                 () -> new CustomException(ErrorCode.NOT_FOUND_USER_INFO)
         );
 
+        log.info("kakao Login Success : {}", oAuthId);
+
         // accessToken, refreshToken 생성
         String accessToken = jwtTokenProvider.createAccessToken(oAuthId, userInfo);
         String refreshToken = jwtTokenProvider.createRefreshToken(oAuthId, userInfo);
