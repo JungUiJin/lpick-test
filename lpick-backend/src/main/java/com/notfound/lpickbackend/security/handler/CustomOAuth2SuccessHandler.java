@@ -69,7 +69,7 @@ public class CustomOAuth2SuccessHandler implements AuthenticationSuccessHandler 
         redisService.saveWhitelistRefreshToken(oAuthId, refreshToken, refreshTokenValidity, TimeUnit.MILLISECONDS);
 
         // redirect : 아직 보낼곳이 없어서 임시로 작성
-        response.sendRedirect("/");
+        response.sendRedirect("http://localhost:3000/");
     }
 
 }
