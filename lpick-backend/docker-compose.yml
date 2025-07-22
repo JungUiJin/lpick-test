@@ -61,8 +61,8 @@ services:
       - ./certbot/conf:/etc/letsencrypt
     entrypoint: >
       sh -c "certbot certonly --webroot --webroot-path=/var/www/certbot
-      --email your-email@example.com --agree-tos --no-eff-email
-      -d your-subdomain.duckdns.org"
+      --email yealkki38@gmail.com --agree-tos --no-eff-email
+      -d lpick.duckdns.org"
 
 volumes:
   pgdata:
