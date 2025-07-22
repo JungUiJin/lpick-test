@@ -28,7 +28,7 @@ public class JwtFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
         String path = request.getRequestURI();
-        log.info("JWT Filter 시작. uri : {}", path);
+
 
         // oath2 코드 요청 리다이렉트는 건너 뛰기
         // 개발자 전용 토큰 요청도 건너 뛰기
@@ -43,6 +43,8 @@ public class JwtFilter extends OncePerRequestFilter {
             filterChain.doFilter(request, response);
             return;
         }
+
+        log.info("JWT Filter 시작. uri : {}", path);
 
         // 요청 헤더에서 Cookies 추출
         Cookie[] cookies = request.getCookies();
