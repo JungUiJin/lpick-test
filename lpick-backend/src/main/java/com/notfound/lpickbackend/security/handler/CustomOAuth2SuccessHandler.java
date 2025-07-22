@@ -64,8 +64,8 @@ public class CustomOAuth2SuccessHandler implements AuthenticationSuccessHandler 
         String refreshToken = jwtTokenProvider.createRefreshToken(oAuthId, userInfo);
 
         // 쿠키에 저장
-        CookieUtil.addCookie(response, "access_token", accessToken, accessTokenValidity/1000); // 1시간
-        CookieUtil.addCookie(response, "refresh_token", refreshToken, refreshTokenValidity/1000); // 7일
+        CookieUtil.addCookie(response, "access_token", accessToken, accessTokenValidity); // 1시간
+        CookieUtil.addCookie(response, "refresh_token", refreshToken, refreshTokenValidity); // 7일
 
         // redis whiteList에 refreshToken 저장
         redisService.saveWhitelistRefreshToken(oAuthId, refreshToken, refreshTokenValidity, TimeUnit.MILLISECONDS);

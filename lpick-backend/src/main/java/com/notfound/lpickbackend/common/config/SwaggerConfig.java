@@ -4,6 +4,7 @@ package com.notfound.lpickbackend.common.config;
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.security.*;
+import io.swagger.v3.oas.models.servers.Server;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -13,6 +14,7 @@ public class SwaggerConfig {
     @Bean
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
+                .addServersItem(new Server().url("https://lpick.duckdns.org"))
                 .addSecurityItem(new SecurityRequirement().addList("kakao"))
                 .addSecurityItem(new SecurityRequirement().addList("cookieAuth")) // ✅ 쿠키 인증 방식 추가
                 .components(new Components()
