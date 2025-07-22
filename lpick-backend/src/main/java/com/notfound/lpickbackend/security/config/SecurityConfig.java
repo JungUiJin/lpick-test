@@ -92,6 +92,8 @@ public class SecurityConfig {
         // 배포된 swagger 허용
         configuration.addAllowedOrigin("http://3.34.194.165:8080");
 
+        configuration.addAllowedOrigin("https://lpick.duckdns.org");
+
         configuration.addAllowedMethod("*"); // 모든 HTTP 메서드 허용
         configuration.addAllowedHeader("*"); // 모든 헤더 허용
         configuration.setAllowCredentials(true); // 쿠키 인증 필요하면 true
