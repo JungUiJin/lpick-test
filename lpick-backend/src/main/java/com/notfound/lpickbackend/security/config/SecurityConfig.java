@@ -38,7 +38,7 @@ public class SecurityConfig {
         http.cors(cors -> cors
                 .configurationSource(corsConfigurationSource()));
         http.authorizeHttpRequests(config -> config
-                        .requestMatchers("/api/v1/developer-token","/swagger-ui.html/**", "/swagger-ui/**", "/v3/api-docs/**").permitAll() // 개발자용 토큰 요청 허용
+                        .requestMatchers("/login", "/api/v1/developer-token","/swagger-ui.html/**", "/swagger-ui/**", "/v3/api-docs/**").permitAll() // 개발자용 토큰 요청 허용
                         .anyRequest().authenticated() // 테스트를 위해 임시로 설정
                 )
                 .formLogin(config -> config.disable()) // 폼 로그인 비활성화
@@ -87,12 +87,9 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
 
-        // 로컬 프론트엔드 주소 허용
-        configuration.addAllowedOrigin("http://localhost:3000");
-        // 배포된 swagger 허용
-        configuration.addAllowedOrigin("http://3.34.194.165:8080");
-
-        configuration.addAllowedOrigin("https://lpick.duckdns.org");
+        configuration.addAllowedOriginPattern("https://lpick.duckdns.org");
+        configuration.addAllowedOriginPattern("http://localhost:3000");
+        configuration.addAllowedOriginPattern("http://3.34.194.165:8080");
 
         configuration.addAllowedMethod("*"); // 모든 HTTP 메서드 허용
         configuration.addAllowedHeader("*"); // 모든 헤더 허용
