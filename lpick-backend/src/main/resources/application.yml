@@ -58,5 +58,9 @@ springdoc:
     tagsSorter: alpha
     display-request-duration: true
     disable-swagger-default-url: true
+    use-root-path: true
+    urls:
+      - name: LPICK API
+        url: /v3/api-docs
     oauth2-redirect-url: ${swagger.oauth2-redirect-url}
     persistAuthorization: true  # Swagger UI 페이지 새로고침해도 인증정보 유지
