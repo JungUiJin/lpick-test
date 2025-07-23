@@ -57,7 +57,7 @@ springdoc:
     operationsSorter: method
     tagsSorter: alpha
     display-request-duration: true
-    disable-swagger-default-url: true
+#    disable-swagger-default-url: true
     use-root-path: true
     urls:
       - name: LPICK API
