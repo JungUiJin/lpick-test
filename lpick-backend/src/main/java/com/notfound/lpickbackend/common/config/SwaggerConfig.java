@@ -9,6 +9,8 @@ import io.swagger.v3.oas.models.servers.Server;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.List;
+
 @Configuration
 @OpenAPIDefinition(
         servers = {@io.swagger.v3.oas.annotations.servers.Server(url = "https://lpick.duckdns.org", description = "Default Server URL")}
@@ -18,13 +20,13 @@ public class SwaggerConfig {
     @Bean
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
-                .addServersItem(new Server().url("https://lpick.duckdns.org"))
-                .addServersItem(new Server().url("http://lpick.duckdns.org"))
-                .addServersItem(new Server().url("http://localhost:8080"))
+                .servers(List.of(
+                        new Server().url("https://lpick.duckdns.org").description("Production"),
+                        new Server().url("http://localhost:8080").description("Local Dev")
+                ))
                 .addSecurityItem(new SecurityRequirement().addList("kakao"))
-                .addSecurityItem(new SecurityRequirement().addList("cookieAuth")) // ✅ 쿠키 인증 방식 추가
+                .addSecurityItem(new SecurityRequirement().addList("cookieAuth"))
                 .components(new Components()
-                        // ✅ 기존 Kakao OAuth 설정
                         .addSecuritySchemes("kakao", new SecurityScheme()
                                 .type(SecurityScheme.Type.OAUTH2)
                                 .flows(new OAuthFlows()
@@ -38,11 +40,10 @@ public class SwaggerConfig {
                                         )
                                 )
                         )
-                        // ✅ 쿠키 기반 인증 스키마 추가 (access_token 기준)
                         .addSecuritySchemes("cookieAuth", new SecurityScheme()
                                 .type(SecurityScheme.Type.APIKEY)
                                 .in(SecurityScheme.In.COOKIE)
-                                .name("access_token") //
+                                .name("access_token")
                         )
                 );
     }
