@@ -12,18 +12,15 @@ import org.springframework.context.annotation.Configuration;
 import java.util.List;
 
 @Configuration
-@OpenAPIDefinition(
-        servers = {@io.swagger.v3.oas.annotations.servers.Server(url = "https://lpick.duckdns.org", description = "Default Server URL")}
-)
 public class SwaggerConfig {
 
     @Bean
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
-                .servers(List.of(
-                        new Server().url("https://lpick.duckdns.org").description("Production"),
-                        new Server().url("http://localhost:8080").description("Local Dev")
-                ))
+//                .servers(List.of(
+//                        new Server().url("https://lpick.duckdns.org").description("Production"),
+//                        new Server().url("http://localhost:8080").description("Local Dev")
+//                ))
                 .addSecurityItem(new SecurityRequirement().addList("kakao"))
                 .addSecurityItem(new SecurityRequirement().addList("cookieAuth"))
                 .components(new Components()
