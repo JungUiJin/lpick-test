@@ -19,6 +19,8 @@ public class SwaggerConfig {
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
                 .addServersItem(new Server().url("https://lpick.duckdns.org"))
+                .addServersItem(new Server().url("http://lpick.duckdns.org"))
+                .addServersItem(new Server().url("http://localhost:8080"))
                 .addSecurityItem(new SecurityRequirement().addList("kakao"))
                 .addSecurityItem(new SecurityRequirement().addList("cookieAuth")) // ✅ 쿠키 인증 방식 추가
                 .components(new Components()
