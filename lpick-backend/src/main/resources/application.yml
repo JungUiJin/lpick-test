@@ -62,5 +62,5 @@ springdoc:
     urls:
       - name: LPICK API
         url: /v3/api-docs
-    oauth2-redirect-url: ${swagger.oauth2-redirect-url}
+    oauth2-redirect-url: https://lpick.duckdns.org/login/oauth2/code/kakao
     persistAuthorization: true  # Swagger UI 페이지 새로고침해도 인증정보 유지
