@@ -1,6 +1,7 @@
 package com.notfound.lpickbackend.common.config;
 
 
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.security.*;
@@ -9,6 +10,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
+@OpenAPIDefinition(
+        servers = {@io.swagger.v3.oas.annotations.servers.Server(url = "https://lpick.duckdns.org", description = "Default Server URL")}
+)
 public class SwaggerConfig {
 
     @Bean
