@@ -7,7 +7,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 @EnableJpaAuditing
-@OpenAPIDefinition(servers = {@Server(url = "https://lpick.duckdns.org", description = "Default Server URL")})
+@OpenAPIDefinition(servers = {
+        @Server(url = "https://lpick.duckdns.org", description = "Default Server URL")}
+)
 @SpringBootApplication
 public class LpickBackendApplication {
 
