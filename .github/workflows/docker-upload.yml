@@ -71,7 +71,7 @@ jobs:
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
           source: "./lpick-backend/docker-compose.yml"
-          target: "~/lpick-server/lpick-backend"
+          target: "~/lpick-server"
 
       - name: API-KEY.yml 생성
         uses: appleboy/ssh-action@v1.0.3
